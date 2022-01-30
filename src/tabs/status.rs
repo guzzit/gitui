@@ -660,7 +660,12 @@ impl Status {
 
 	fn submodules(repo: &RepoPath, q: &Queue) -> Result<()> {
 		let s = sync::get_submodules(repo)?;
-		q.push(InternalEvent::ShowInfoMsg(s.join(",")));
+
+		q.push(InternalEvent::ShowInfoMsg(
+			s.iter()
+				.map(|s| s.path.as_os_str().to_string_lossy())
+				.join(","),
+		));
 		Ok(())
 	}
 
