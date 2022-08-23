@@ -1,3 +1,4 @@
+//use crate::queue::Action;
 use crate::ui::Size;
 use crate::{
     components::{
@@ -12,6 +13,9 @@ use anyhow::Result;
 use core::cmp::{max, min};
 use crossterm::event::{Event, KeyCode, KeyModifiers};
 use itertools::Itertools;
+//use std::fs::File;
+use std::fs::OpenOptions;
+use std::io::prelude::*;
 use std::{cell::Cell, collections::HashMap, ops::Range};
 use tui::text::Spans;
 use tui::{
@@ -117,6 +121,39 @@ impl TextInputComponent {
             self.scroll_top = self.scroll_top.saturating_sub(1);
             //self.cur_line = self.cur_line.saturating_sub(1);
         }
+        let action = String::from("insert_new_line");
+        self.log(action);
+    }
+
+    fn log(&self, method: String) {
+        //let mut f = File::create("foo.txt").unwrap();
+        let mut f = OpenOptions::new()
+            .write(true)
+            .read(true)
+            .create(true)
+            .append(true)
+            .open("foo.txt")
+            .unwrap();
+        let buffer = String::new();
+        let last = self.msg.chars().last();
+        //f.write_all(last.unwrap().to_string().as_bytes()).unwrap();
+        let new_content = format!(
+            "Action:{} | scroll_top: {} | scroll_max: {} | cur_line: {} | cursor_position: {} | frame_height: {}",
+            method, self.scroll_top, self.scroll_max, self.cur_line, self.cursor_position, self.frame_height.get()
+        );
+
+        writeln!(f, "{}", new_content).unwrap();
+
+        // let first_line = String::from("Start");
+        // f.write_all(first_line.as_bytes()).unwrap();
+        // let existing_content = f.read_to_string(&mut buffer);
+
+        // let a = match existing_content {
+        //     Ok(c) => buffer,
+        //     Err(e) => e.to_string(),
+        // };
+        // let whole_content = format!(" {a} \n {new_content}");
+        // f.write_all(whole_content.as_bytes()).unwrap();
     }
 
     /// See `incr_cursor`
@@ -130,6 +167,9 @@ impl TextInputComponent {
                 self.scroll_top += 1;
             }
         }
+
+        let action = String::from("incr_cursor_multiline");
+        self.log(action);
     }
 
     /// Move the cursor right one char.
@@ -140,6 +180,8 @@ impl TextInputComponent {
             }
             self.cursor_position = pos;
         }
+        let action = String::from("incr_cursor");
+        self.log(action);
     }
 
     /// See `decr_cursor`
@@ -150,6 +192,8 @@ impl TextInputComponent {
                 self.scroll_top = self.scroll_top.saturating_sub(1);
             }
         }
+        let action = String::from("decr_cursor_multiline");
+        self.log(action);
     }
 
     /// Move the cursor left one char.
@@ -162,30 +206,95 @@ impl TextInputComponent {
         if self.input_type == InputType::Multiline {
             self.decr_cursor_multiline(index);
         }
+        let action = String::from("decr_cursor");
+        self.log(action);
     }
 
     /// Move the cursor up a line.
     /// Only for multi-line textinputs
     fn line_up_cursor(&mut self) {
-        let mut nearest_newline: usize = 0;
-        let mut prev_line_newline_loc = 0;
+        // let mut nearest_newline: usize = 0;
+        // let mut prev_line_newline_loc = 0;
+        // for (i, c) in self.msg.chars().enumerate() {
+        //     if c == '\n' {
+        //         prev_line_newline_loc = nearest_newline;
+        //         nearest_newline = i;
+        //     }
+
+        //     if i >= self.cursor_position {
+        //         break;
+        //     }
+        // }
+        //start ex
+        let mut top_line = 0;
+        let mut middle_line = 0;
+        let mut bottom_line = 0;
         for (i, c) in self.msg.chars().enumerate() {
-            if c == '\n' {
-                prev_line_newline_loc = nearest_newline;
-                nearest_newline = i;
+            if c == '\n'
+            // || (i > bottom_line
+            //     && i >= self.cursor_position.saturating_sub(1))
+            {
+                top_line = middle_line;
+                middle_line = bottom_line;
+                bottom_line = i;
             }
 
-            if i >= self.cursor_position {
+            if i >= self.cursor_position || i == self.msg.len() - 1 {
+                //flatten to one big if statement
+                if c != '\n'
+                    && !self.msg.ends_with('\n')
+                    && i > bottom_line
+                {
+                    top_line = middle_line;
+                    middle_line = bottom_line;
+                    bottom_line = self.msg.len() - 1
+                } else if c == '\n' && i == self.msg.len() - 1 {
+                    top_line = middle_line;
+                    middle_line = bottom_line;
+                } else if self.msg.chars().nth(top_line) == Some('\n')
+                    && self.msg.chars().nth(middle_line) == Some('\n')
+                {
+                    top_line = middle_line;
+                    middle_line = bottom_line;
+                }
+
+                // if c == '\n' && i == self.cursor_position {
+                //     middle_line += middle_line;
+                // }
                 break;
             }
         }
-        self.cursor_position = (prev_line_newline_loc
-            + self.cursor_position)
-            .saturating_sub(nearest_newline);
-        if prev_line_newline_loc == 0 {
-            self.cursor_position = 0;
-            //self.cursor_position.saturating_sub(1);
+
+        // let m = self.msg.clone();
+        // let mess = format!("MESS:{m}");
+        // self.log(mess);
+
+        //if middle line = 0; don't do anything, or shift left?
+        let logger = format!("top_line:{top_line} | middle_line:{middle_line} | bottom_line:{bottom_line}");
+        self.log(logger);
+        // if middle_line.saturating_sub(top_line) == 1 {
+        //     self.cursor_position = middle_line;
+        // } else {
+        let cursor_position_in_line =
+            self.cursor_position.saturating_sub(middle_line);
+        self.cursor_position =
+            top_line.saturating_add(cursor_position_in_line);
+
+        if top_line == 0 {
+            self.cursor_position =
+                self.cursor_position.saturating_sub(1);
         }
+        //}
+
+        //end ex
+
+        // self.cursor_position = (prev_line_newline_loc
+        //     + self.cursor_position)
+        //     .saturating_sub(nearest_newline);
+        // if prev_line_newline_loc == 0 {
+        //     self.cursor_position = 0;
+        //     //self.cursor_position.saturating_sub(1);
+        // }
 
         while !self.msg.is_char_boundary(self.cursor_position) {
             self.cursor_position += 1;
@@ -194,6 +303,9 @@ impl TextInputComponent {
         if self.cur_line < self.scroll_top {
             self.scroll_top = self.scroll_top.saturating_sub(1);
         }
+
+        let action = String::from("line_up_cursor");
+        self.log(action);
     }
 
     /// Move the cursor down a line.
@@ -223,6 +335,7 @@ impl TextInputComponent {
                 chars_not_printed += 1;
             }
         }
+
         self.cursor_position = self
             .cursor_position
             .saturating_sub(prev_line_newline_loc)
@@ -253,6 +366,14 @@ impl TextInputComponent {
                 self.scroll_top += 1;
             }
         }
+
+        if self.msg.chars().last() == Some('\n') {
+            //panic!();
+            //self.cur_line += 1;
+            self.incr_cursor();
+        }
+        let action = String::from("line_down_cursor");
+        self.log(action);
     }
 
     /// Get the position of the next char, or, if the cursor points
@@ -284,6 +405,8 @@ impl TextInputComponent {
                 self.scroll_top = self.scroll_top.saturating_sub(1);
             }
         }
+        let action = String::from("multiline_backspace");
+        self.log(action);
     }
 
     fn backspace(&mut self) {
@@ -294,6 +417,8 @@ impl TextInputComponent {
             }
             self.msg.remove(self.cursor_position);
         }
+        let action = String::from("backspace");
+        self.log(action);
     }
 
     /// See `delete_key`, this is the multi-line part
