@@ -253,7 +253,11 @@ impl TextInputComponent {
                     middle_line = bottom_line;
                 } else if self.msg.chars().nth(top_line) == Some('\n')
                     && self.msg.chars().nth(middle_line) == Some('\n')
+                    && bottom_line != self.cursor_position
                 {
+                    top_line = middle_line;
+                    middle_line = bottom_line;
+                } else if top_line == 0 {
                     top_line = middle_line;
                     middle_line = bottom_line;
                 }
@@ -272,19 +276,19 @@ impl TextInputComponent {
         //if middle line = 0; don't do anything, or shift left?
         let logger = format!("top_line:{top_line} | middle_line:{middle_line} | bottom_line:{bottom_line}");
         self.log(logger);
-        // if middle_line.saturating_sub(top_line) == 1 {
-        //     self.cursor_position = middle_line;
-        // } else {
-        let cursor_position_in_line =
-            self.cursor_position.saturating_sub(middle_line);
-        self.cursor_position =
-            top_line.saturating_add(cursor_position_in_line);
-
-        if top_line == 0 {
+        if middle_line.saturating_sub(top_line) == 1 {
+            self.cursor_position = middle_line;
+        } else {
+            let cursor_position_in_line =
+                self.cursor_position.saturating_sub(middle_line);
             self.cursor_position =
-                self.cursor_position.saturating_sub(1);
+                top_line.saturating_add(cursor_position_in_line);
+
+            if top_line == 0 {
+                self.cursor_position =
+                    self.cursor_position.saturating_sub(1);
+            }
         }
-        //}
 
         //end ex
 
