@@ -239,7 +239,9 @@ impl TextInputComponent {
                 bottom_line = i;
             }
 
-            if i >= self.cursor_position || i == self.msg.len() - 1 {
+            if i >= self.cursor_position
+                || i == self.msg.len().saturating_sub(1)
+            {
                 //flatten to one big if statement
                 if c != '\n'
                     && !self.msg.ends_with('\n')
@@ -316,41 +318,73 @@ impl TextInputComponent {
     /// Only for multi-line textinputs
     fn line_down_cursor(&mut self) {
         //
-        let mut nearest_newline: usize = 0;
-        let mut prev_line_newline_loc = 0;
+        // let mut nearest_newline: usize = 0;
+        // let mut prev_line_newline_loc = 0;
 
-        let mut chars_not_printed = 0;
+        // let mut chars_not_printed = 0;
+
+        let mut top_line = 0;
+        let mut middle_line = 0;
+        let mut bottom_line = 0;
+
+        // if self.cursor_position.saturating_add(1) < self.msg.len(){
 
         for (i, c) in self.msg.chars().enumerate() {
             if c == '\n' {
-                chars_not_printed = 0;
-                prev_line_newline_loc = nearest_newline;
-                nearest_newline = i;
-                if nearest_newline > self.cursor_position {
-                    break;
-                }
+                top_line = middle_line;
+                middle_line = bottom_line;
+                bottom_line = i;
             }
 
+            if i = self.cursor_position
+                || i == self.msg.len().saturating_sub(1)
+            {
+                let n = self.cursor_position;
+
+                for (j, c) in self.msg.chars().enumerate().skip(n) {
+                    if c == '\n' {
+                        top_line = middle_line;
+                        middle_line = bottom_line;
+                        bottom_line = j;
+                    }
+                }
+                break;
+            }
+
+            // if c == '\n' {
+            //     chars_not_printed = 0;
+            //     prev_line_newline_loc = nearest_newline;
+            //     nearest_newline = i;
+            //     if nearest_newline > self.cursor_position {
+            //         break;
+            //     }
+            // }
             // To capture unicode multi-byte characters
             //chars_not_printed += c.len_utf8() - 1;
-            if !self.msg.is_char_boundary(i) {
-                // self.msg.is_char_boundary(i) c.is_alphanumeric() {
-                // unprintable
-                chars_not_printed += 1;
-            }
+            //if !self.msg.is_char_boundary(i) {
+            // self.msg.is_char_boundary(i) c.is_alphanumeric() {
+            // unprintable
+            //chars_not_printed += 1;
+            //}
         }
+        // }
 
-        self.cursor_position = self
-            .cursor_position
-            .saturating_sub(prev_line_newline_loc)
-            .saturating_add(nearest_newline)
-            .saturating_add(chars_not_printed);
+        let cursor_position_in_line =
+            self.cursor_position.saturating_sub(top_line);
+        self.cursor_position =
+            middle_line.saturating_add(cursor_position_in_line);
 
-        if prev_line_newline_loc == 0
-            && self.cursor_position < self.msg.len().saturating_sub(1)
-        {
-            self.cursor_position += 1;
-        }
+        // self.cursor_position = self
+        //     .cursor_position
+        //     .saturating_sub(prev_line_newline_loc)
+        //     .saturating_add(nearest_newline)
+        //     .saturating_add(chars_not_printed);
+
+        // if prev_line_newline_loc == 0
+        //     && self.cursor_position < self.msg.len().saturating_sub(1)
+        // {
+        //     self.cursor_position += 1;
+        // }
 
         if self.cursor_position < self.msg.len() {
             while !self.msg.is_char_boundary(self.cursor_position) {
@@ -371,14 +405,80 @@ impl TextInputComponent {
             }
         }
 
-        if self.msg.chars().last() == Some('\n') {
-            //panic!();
-            //self.cur_line += 1;
-            self.incr_cursor();
-        }
+        //if self.msg.chars().last() == Some('\n') {
+        //panic!();
+        //self.cur_line += 1;
+        //self.incr_cursor();
+        //}
         let action = String::from("line_down_cursor");
         self.log(action);
     }
+
+    // fn line_down_cursor(&mut self) {
+    //     //
+    //     let mut nearest_newline: usize = 0;
+    //     let mut prev_line_newline_loc = 0;
+
+    //     let mut chars_not_printed = 0;
+
+    //     for (i, c) in self.msg.chars().enumerate() {
+    //         if c == '\n' {
+    //             chars_not_printed = 0;
+    //             prev_line_newline_loc = nearest_newline;
+    //             nearest_newline = i;
+    //             if nearest_newline > self.cursor_position {
+    //                 break;
+    //             }
+    //         }
+
+    //         // To capture unicode multi-byte characters
+    //         //chars_not_printed += c.len_utf8() - 1;
+    //         if !self.msg.is_char_boundary(i) {
+    //             // self.msg.is_char_boundary(i) c.is_alphanumeric() {
+    //             // unprintable
+    //             chars_not_printed += 1;
+    //         }
+    //     }
+
+    //     self.cursor_position = self
+    //         .cursor_position
+    //         .saturating_sub(prev_line_newline_loc)
+    //         .saturating_add(nearest_newline)
+    //         .saturating_add(chars_not_printed);
+
+    //     if prev_line_newline_loc == 0
+    //         && self.cursor_position < self.msg.len().saturating_sub(1)
+    //     {
+    //         self.cursor_position += 1;
+    //     }
+
+    //     if self.cursor_position < self.msg.len() {
+    //         while !self.msg.is_char_boundary(self.cursor_position) {
+    //             self.cursor_position += 1;
+    //         }
+    //     } else {
+    //         self.cursor_position = self.msg.len().saturating_sub(1);
+    //     }
+
+    //     if self.cur_line < self.scroll_max.saturating_sub(2) {
+    //         self.cur_line += 1;
+    //         if self.cur_line
+    //             > self.scroll_top
+    //                 + (self.current_area.get().height as usize)
+    //                     .saturating_sub(3_usize)
+    //         {
+    //             self.scroll_top += 1;
+    //         }
+    //     }
+
+    //     if self.msg.chars().last() == Some('\n') {
+    //         //panic!();
+    //         //self.cur_line += 1;
+    //         self.incr_cursor();
+    //     }
+    //     let action = String::from("line_down_cursor");
+    //     self.log(action);
+    // }
 
     /// Get the position of the next char, or, if the cursor points
     /// to the last char, the `msg.len()`.
