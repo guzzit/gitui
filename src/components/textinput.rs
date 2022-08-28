@@ -336,16 +336,22 @@ impl TextInputComponent {
                 bottom_line = i;
             }
 
-            if i = self.cursor_position
+            if i == self.cursor_position
                 || i == self.msg.len().saturating_sub(1)
             {
                 let n = self.cursor_position;
+                let mut drop_count: i32 = 0;
 
-                for (j, c) in self.msg.chars().enumerate().skip(n) {
-                    if c == '\n' {
+                for (j, k) in self.msg.chars().enumerate().skip(n) {
+                    if k == '\n' {
                         top_line = middle_line;
                         middle_line = bottom_line;
                         bottom_line = j;
+                        drop_count = drop_count.saturating_add(1);
+
+                        if drop_count == 2 {
+                            break;
+                        }
                     }
                 }
                 break;
@@ -368,11 +374,17 @@ impl TextInputComponent {
             //}
         }
         // }
+        let logger = format!("linedown:top_line:{top_line} | middle_line:{middle_line} | bottom_line:{bottom_line}");
+        self.log(logger);
 
-        let cursor_position_in_line =
-            self.cursor_position.saturating_sub(top_line);
-        self.cursor_position =
-            middle_line.saturating_add(cursor_position_in_line);
+        if middle_line.saturating_sub(top_line) == 1 {
+            self.cursor_position = middle_line;
+        } else {
+            let cursor_position_in_line =
+                self.cursor_position.saturating_sub(top_line);
+            self.cursor_position =
+                middle_line.saturating_add(cursor_position_in_line);
+        }
 
         // self.cursor_position = self
         //     .cursor_position
