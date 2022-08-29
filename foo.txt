@@ -8,11 +8,11 @@ Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 0 | cur_line: 0 | cur
 Action:incr_cursor | scroll_top: 0 | scroll_max: 0 | cur_line: 0 | cursor_position: 4 | frame_height: 40
 Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 0 | cur_line: 0 | cursor_position: 4 | frame_height: 40
 Action:incr_cursor | scroll_top: 0 | scroll_max: 0 | cur_line: 0 | cursor_position: 5 | frame_height: 40
-Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 0 | cur_line: 1 | cursor_position: 5 | frame_height: 40
-Action:incr_cursor | scroll_top: 0 | scroll_max: 0 | cur_line: 1 | cursor_position: 6 | frame_height: 40
-Action:insert_new_line | scroll_top: 0 | scroll_max: 1 | cur_line: 1 | cursor_position: 6 | frame_height: 40
-Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 1 | cur_line: 1 | cursor_position: 6 | frame_height: 40
-Action:incr_cursor | scroll_top: 0 | scroll_max: 1 | cur_line: 1 | cursor_position: 7 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 0 | cur_line: 0 | cursor_position: 5 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 0 | cur_line: 0 | cursor_position: 6 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 0 | cur_line: 1 | cursor_position: 6 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 0 | cur_line: 1 | cursor_position: 7 | frame_height: 40
+Action:insert_new_line | scroll_top: 0 | scroll_max: 1 | cur_line: 1 | cursor_position: 7 | frame_height: 40
 Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 1 | cur_line: 1 | cursor_position: 7 | frame_height: 40
 Action:incr_cursor | scroll_top: 0 | scroll_max: 1 | cur_line: 1 | cursor_position: 8 | frame_height: 40
 Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 1 | cur_line: 1 | cursor_position: 8 | frame_height: 40
@@ -36,68 +36,114 @@ Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 2 | cur_line: 2 | cur
 Action:incr_cursor | scroll_top: 0 | scroll_max: 2 | cur_line: 2 | cursor_position: 17 | frame_height: 40
 Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 2 | cur_line: 2 | cursor_position: 17 | frame_height: 40
 Action:incr_cursor | scroll_top: 0 | scroll_max: 2 | cur_line: 2 | cursor_position: 18 | frame_height: 40
-Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 2 | cur_line: 3 | cursor_position: 18 | frame_height: 40
-Action:incr_cursor | scroll_top: 0 | scroll_max: 2 | cur_line: 3 | cursor_position: 19 | frame_height: 40
-Action:insert_new_line | scroll_top: 0 | scroll_max: 3 | cur_line: 3 | cursor_position: 19 | frame_height: 40
-Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 3 | cur_line: 3 | cursor_position: 19 | frame_height: 40
-Action:incr_cursor | scroll_top: 0 | scroll_max: 3 | cur_line: 3 | cursor_position: 20 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 2 | cur_line: 2 | cursor_position: 18 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 2 | cur_line: 2 | cursor_position: 19 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 2 | cur_line: 3 | cursor_position: 19 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 2 | cur_line: 3 | cursor_position: 20 | frame_height: 40
+Action:insert_new_line | scroll_top: 0 | scroll_max: 3 | cur_line: 3 | cursor_position: 20 | frame_height: 40
 Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 3 | cur_line: 3 | cursor_position: 20 | frame_height: 40
 Action:incr_cursor | scroll_top: 0 | scroll_max: 3 | cur_line: 3 | cursor_position: 21 | frame_height: 40
 Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 3 | cur_line: 3 | cursor_position: 21 | frame_height: 40
 Action:incr_cursor | scroll_top: 0 | scroll_max: 3 | cur_line: 3 | cursor_position: 22 | frame_height: 40
 Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 3 | cur_line: 3 | cursor_position: 22 | frame_height: 40
 Action:incr_cursor | scroll_top: 0 | scroll_max: 3 | cur_line: 3 | cursor_position: 23 | frame_height: 40
-Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 3 | cur_line: 4 | cursor_position: 23 | frame_height: 40
-Action:incr_cursor | scroll_top: 0 | scroll_max: 3 | cur_line: 4 | cursor_position: 24 | frame_height: 40
-Action:insert_new_line | scroll_top: 0 | scroll_max: 4 | cur_line: 4 | cursor_position: 24 | frame_height: 40
-Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 4 | cur_line: 5 | cursor_position: 24 | frame_height: 40
-Action:incr_cursor | scroll_top: 0 | scroll_max: 4 | cur_line: 5 | cursor_position: 25 | frame_height: 40
-Action:insert_new_line | scroll_top: 0 | scroll_max: 5 | cur_line: 5 | cursor_position: 25 | frame_height: 40
-Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 5 | cur_line: 6 | cursor_position: 25 | frame_height: 40
-Action:incr_cursor | scroll_top: 0 | scroll_max: 5 | cur_line: 6 | cursor_position: 26 | frame_height: 40
-Action:insert_new_line | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 26 | frame_height: 40
-Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 26 | frame_height: 40
-Action:incr_cursor | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 27 | frame_height: 40
-Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 27 | frame_height: 40
-Action:incr_cursor | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 28 | frame_height: 40
-Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 28 | frame_height: 40
-Action:incr_cursor | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 29 | frame_height: 40
-Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 29 | frame_height: 40
-Action:incr_cursor | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 30 | frame_height: 40
-Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 30 | frame_height: 40
-Action:incr_cursor | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 31 | frame_height: 40
-Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 31 | frame_height: 40
-Action:incr_cursor | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 32 | frame_height: 40
-Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 6 | cur_line: 7 | cursor_position: 32 | frame_height: 40
-Action:incr_cursor | scroll_top: 0 | scroll_max: 6 | cur_line: 7 | cursor_position: 33 | frame_height: 40
-Action:insert_new_line | scroll_top: 0 | scroll_max: 7 | cur_line: 7 | cursor_position: 33 | frame_height: 40
-Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 7 | cur_line: 7 | cursor_position: 33 | frame_height: 40
-Action:incr_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 7 | cursor_position: 34 | frame_height: 40
-Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 7 | cur_line: 7 | cursor_position: 34 | frame_height: 40
-Action:incr_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 7 | cursor_position: 35 | frame_height: 40
-Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 7 | cur_line: 7 | cursor_position: 35 | frame_height: 40
-Action:incr_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 7 | cursor_position: 36 | frame_height: 40
-Action:top_line:25 | middle_line:32 | bottom_line:35 | scroll_top: 0 | scroll_max: 7 | cur_line: 7 | cursor_position: 36 | frame_height: 40
-Action:line_up_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 6 | cursor_position: 29 | frame_height: 40
-Action:decr_cursor_multiline | scroll_top: 0 | scroll_max: 7 | cur_line: 6 | cursor_position: 28 | frame_height: 40
-Action:decr_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 6 | cursor_position: 28 | frame_height: 40
-Action:top_line:24 | middle_line:25 | bottom_line:35 | scroll_top: 0 | scroll_max: 7 | cur_line: 6 | cursor_position: 28 | frame_height: 40
-Action:line_up_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 5 | cursor_position: 25 | frame_height: 40
-Action:top_line:23 | middle_line:24 | bottom_line:25 | scroll_top: 0 | scroll_max: 7 | cur_line: 5 | cursor_position: 25 | frame_height: 40
-Action:line_up_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 4 | cursor_position: 24 | frame_height: 40
-Action:top_line:18 | middle_line:23 | bottom_line:24 | scroll_top: 0 | scroll_max: 7 | cur_line: 4 | cursor_position: 24 | frame_height: 40
-Action:line_up_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 3 | cursor_position: 19 | frame_height: 40
-Action:top_line:13 | middle_line:18 | bottom_line:35 | scroll_top: 0 | scroll_max: 7 | cur_line: 3 | cursor_position: 19 | frame_height: 40
-Action:line_up_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 2 | cursor_position: 14 | frame_height: 40
-Action:top_line:5 | middle_line:13 | bottom_line:35 | scroll_top: 0 | scroll_max: 7 | cur_line: 2 | cursor_position: 14 | frame_height: 40
-Action:line_up_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 1 | cursor_position: 6 | frame_height: 40
-Action:linedown:top_line:5 | middle_line:13 | bottom_line:18 | scroll_top: 0 | scroll_max: 7 | cur_line: 1 | cursor_position: 6 | frame_height: 40
-Action:line_down_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 2 | cursor_position: 14 | frame_height: 40
-Action:linedown:top_line:13 | middle_line:18 | bottom_line:23 | scroll_top: 0 | scroll_max: 7 | cur_line: 2 | cursor_position: 14 | frame_height: 40
-Action:line_down_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 3 | cursor_position: 19 | frame_height: 40
-Action:linedown:top_line:18 | middle_line:23 | bottom_line:24 | scroll_top: 0 | scroll_max: 7 | cur_line: 3 | cursor_position: 19 | frame_height: 40
-Action:line_down_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 4 | cursor_position: 24 | frame_height: 40
-Action:linedown:top_line:24 | middle_line:24 | bottom_line:25 | scroll_top: 0 | scroll_max: 7 | cur_line: 4 | cursor_position: 24 | frame_height: 40
-Action:line_down_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 5 | cursor_position: 24 | frame_height: 40
-Action:linedown:top_line:24 | middle_line:24 | bottom_line:25 | scroll_top: 0 | scroll_max: 7 | cur_line: 5 | cursor_position: 24 | frame_height: 40
-Action:line_down_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 5 | cursor_position: 24 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 3 | cur_line: 3 | cursor_position: 23 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 3 | cur_line: 3 | cursor_position: 24 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 3 | cur_line: 3 | cursor_position: 24 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 3 | cur_line: 3 | cursor_position: 25 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 3 | cur_line: 3 | cursor_position: 25 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 3 | cur_line: 3 | cursor_position: 26 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 3 | cur_line: 4 | cursor_position: 26 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 3 | cur_line: 4 | cursor_position: 27 | frame_height: 40
+Action:insert_new_line | scroll_top: 0 | scroll_max: 4 | cur_line: 4 | cursor_position: 27 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 4 | cur_line: 4 | cursor_position: 27 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 4 | cur_line: 4 | cursor_position: 28 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 4 | cur_line: 4 | cursor_position: 28 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 4 | cur_line: 4 | cursor_position: 29 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 4 | cur_line: 4 | cursor_position: 29 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 4 | cur_line: 4 | cursor_position: 30 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 4 | cur_line: 4 | cursor_position: 30 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 4 | cur_line: 4 | cursor_position: 31 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 4 | cur_line: 5 | cursor_position: 31 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 4 | cur_line: 5 | cursor_position: 32 | frame_height: 40
+Action:insert_new_line | scroll_top: 0 | scroll_max: 5 | cur_line: 5 | cursor_position: 32 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 5 | cur_line: 5 | cursor_position: 32 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 5 | cur_line: 5 | cursor_position: 33 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 5 | cur_line: 5 | cursor_position: 33 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 5 | cur_line: 5 | cursor_position: 34 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 5 | cur_line: 5 | cursor_position: 34 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 5 | cur_line: 5 | cursor_position: 35 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 5 | cur_line: 5 | cursor_position: 35 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 5 | cur_line: 5 | cursor_position: 36 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 5 | cur_line: 5 | cursor_position: 36 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 5 | cur_line: 5 | cursor_position: 37 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 5 | cur_line: 6 | cursor_position: 37 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 5 | cur_line: 6 | cursor_position: 38 | frame_height: 40
+Action:insert_new_line | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 38 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 38 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 39 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 39 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 40 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 40 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 41 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 41 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 6 | cur_line: 6 | cursor_position: 42 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 6 | cur_line: 7 | cursor_position: 42 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 6 | cur_line: 7 | cursor_position: 43 | frame_height: 40
+Action:insert_new_line | scroll_top: 0 | scroll_max: 7 | cur_line: 7 | cursor_position: 43 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 7 | cur_line: 7 | cursor_position: 43 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 7 | cursor_position: 44 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 7 | cur_line: 7 | cursor_position: 44 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 7 | cursor_position: 45 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 7 | cur_line: 7 | cursor_position: 45 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 7 | cursor_position: 46 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 7 | cur_line: 7 | cursor_position: 46 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 7 | cursor_position: 47 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 7 | cur_line: 7 | cursor_position: 47 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 7 | cursor_position: 48 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 7 | cur_line: 7 | cursor_position: 48 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 7 | cursor_position: 49 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 7 | cur_line: 8 | cursor_position: 49 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 7 | cur_line: 8 | cursor_position: 50 | frame_height: 40
+Action:insert_new_line | scroll_top: 0 | scroll_max: 8 | cur_line: 8 | cursor_position: 50 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 8 | cur_line: 8 | cursor_position: 50 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 8 | cur_line: 8 | cursor_position: 51 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 8 | cur_line: 8 | cursor_position: 51 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 8 | cur_line: 8 | cursor_position: 52 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 8 | cur_line: 8 | cursor_position: 52 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 8 | cur_line: 8 | cursor_position: 53 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 8 | cur_line: 8 | cursor_position: 53 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 8 | cur_line: 8 | cursor_position: 54 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 8 | cur_line: 8 | cursor_position: 54 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 8 | cur_line: 8 | cursor_position: 55 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 8 | cur_line: 9 | cursor_position: 55 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 8 | cur_line: 9 | cursor_position: 56 | frame_height: 40
+Action:insert_new_line | scroll_top: 0 | scroll_max: 9 | cur_line: 9 | cursor_position: 56 | frame_height: 40
+Action:top_line:49 | middle_line:55 | bottom_line:55 | scroll_top: 0 | scroll_max: 9 | cur_line: 9 | cursor_position: 56 | frame_height: 40
+Action:line_up_cursor | scroll_top: 0 | scroll_max: 9 | cur_line: 8 | cursor_position: 50 | frame_height: 40
+Action:top_line:42 | middle_line:49 | bottom_line:49 | scroll_top: 0 | scroll_max: 9 | cur_line: 8 | cursor_position: 50 | frame_height: 40
+Action:line_up_cursor | scroll_top: 0 | scroll_max: 9 | cur_line: 7 | cursor_position: 43 | frame_height: 40
+Action:top_line:37 | middle_line:42 | bottom_line:42 | scroll_top: 0 | scroll_max: 9 | cur_line: 7 | cursor_position: 43 | frame_height: 40
+Action:line_up_cursor | scroll_top: 0 | scroll_max: 9 | cur_line: 6 | cursor_position: 38 | frame_height: 40
+Action:top_line:31 | middle_line:37 | bottom_line:37 | scroll_top: 0 | scroll_max: 9 | cur_line: 6 | cursor_position: 38 | frame_height: 40
+Action:line_up_cursor | scroll_top: 0 | scroll_max: 9 | cur_line: 5 | cursor_position: 32 | frame_height: 40
+Action:top_line:26 | middle_line:31 | bottom_line:31 | scroll_top: 0 | scroll_max: 9 | cur_line: 5 | cursor_position: 32 | frame_height: 40
+Action:line_up_cursor | scroll_top: 0 | scroll_max: 9 | cur_line: 4 | cursor_position: 27 | frame_height: 40
+Action:top_line:19 | middle_line:26 | bottom_line:26 | scroll_top: 0 | scroll_max: 9 | cur_line: 4 | cursor_position: 27 | frame_height: 40
+Action:line_up_cursor | scroll_top: 0 | scroll_max: 9 | cur_line: 3 | cursor_position: 20 | frame_height: 40
+Action:top_line:13 | middle_line:19 | bottom_line:19 | scroll_top: 0 | scroll_max: 9 | cur_line: 3 | cursor_position: 20 | frame_height: 40
+Action:line_up_cursor | scroll_top: 0 | scroll_max: 9 | cur_line: 2 | cursor_position: 14 | frame_height: 40
+Action:incr_cursor_multiline | scroll_top: 0 | scroll_max: 9 | cur_line: 2 | cursor_position: 14 | frame_height: 40
+Action:incr_cursor | scroll_top: 0 | scroll_max: 9 | cur_line: 2 | cursor_position: 15 | frame_height: 40
+Action:linedown:top_line_start:13 | top_line_end:18 | middle_line_start:19 | middle_line_end:25  | bottom_line_start:26 | bottom_line_end:0 | scroll_top: 0 | scroll_max: 9 | cur_line: 2 | cursor_position: 15 | frame_height: 40
+Action:line_down_cursor | scroll_top: 0 | scroll_max: 9 | cur_line: 3 | cursor_position: 21 | frame_height: 40
+Action:linedown:top_line_start:19 | top_line_end:25 | middle_line_start:26 | middle_line_end:30  | bottom_line_start:31 | bottom_line_end:0 | scroll_top: 0 | scroll_max: 9 | cur_line: 3 | cursor_position: 21 | frame_height: 40
+Action:line_down_cursor | scroll_top: 0 | scroll_max: 9 | cur_line: 4 | cursor_position: 28 | frame_height: 40
+Action:linedown:top_line_start:26 | top_line_end:30 | middle_line_start:31 | middle_line_end:36  | bottom_line_start:37 | bottom_line_end:0 | scroll_top: 0 | scroll_max: 9 | cur_line: 4 | cursor_position: 28 | frame_height: 40
+Action:line_down_cursor | scroll_top: 0 | scroll_max: 9 | cur_line: 5 | cursor_position: 33 | frame_height: 40
+Action:linedown:top_line_start:31 | top_line_end:36 | middle_line_start:37 | middle_line_end:41  | bottom_line_start:42 | bottom_line_end:0 | scroll_top: 0 | scroll_max: 9 | cur_line: 5 | cursor_position: 33 | frame_height: 40
+Action:line_down_cursor | scroll_top: 0 | scroll_max: 9 | cur_line: 6 | cursor_position: 39 | frame_height: 40
+Action:linedown:top_line_start:37 | top_line_end:41 | middle_line_start:42 | middle_line_end:48  | bottom_line_start:49 | bottom_line_end:0 | scroll_top: 0 | scroll_max: 9 | cur_line: 6 | cursor_position: 39 | frame_height: 40
+Action:line_down_cursor | scroll_top: 0 | scroll_max: 9 | cur_line: 7 | cursor_position: 44 | frame_height: 40
+Action:linedown:top_line_start:42 | top_line_end:48 | middle_line_start:49 | middle_line_end:54  | bottom_line_start:55 | bottom_line_end:0 | scroll_top: 0 | scroll_max: 9 | cur_line: 7 | cursor_position: 44 | frame_height: 40
+Action:line_down_cursor | scroll_top: 0 | scroll_max: 9 | cur_line: 7 | cursor_position: 51 | frame_height: 40
