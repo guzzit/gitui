@@ -107,6 +107,13 @@ impl TextInputComponent {
     fn insert_new_line(&mut self) {
         const BORDER_SIZE: usize = 1;
 
+        if self.msg.ends_with('\n')
+            && self.cursor_position
+                == self.msg.chars().count().saturating_sub(1)
+        {
+            self.incr_cursor();
+            return;
+        }
         self.msg.insert(self.cursor_position, '\n');
         self.incr_cursor();
         self.scroll_max += 1;
@@ -359,6 +366,22 @@ impl TextInputComponent {
                 break;
             }
 
+            if i == self.msg.len().saturating_sub(1) && c != '\n' {
+                top_line_start = middle_line_start;
+                top_line_end = middle_line_end;
+                middle_line_start = bottom_line_start;
+                middle_line_end = i.saturating_sub(1);
+            } else if i == self.msg.len().saturating_sub(1)
+                && c == '\n'
+            {
+                top_line_start = middle_line_start;
+                top_line_end = middle_line_end;
+                middle_line_start = bottom_line_start;
+                middle_line_end = bottom_line_start;
+
+                //self.cur_line += 1;
+            }
+
             // if c == '\n' {
             //     chars_not_printed = 0;
             //     prev_line_newline_loc = nearest_newline;
@@ -385,10 +408,25 @@ impl TextInputComponent {
         // self.cursor_position =
         //     middle_line_start.saturating_add(cursor_position_in_line);
 
-        let cursor_position_in_line =
+        let mut cursor_position_in_line =
             self.cursor_position.saturating_sub(top_line_start);
+
+        if top_line_start == 0 {
+            cursor_position_in_line += 1;
+        }
         self.cursor_position =
             middle_line_start.saturating_add(cursor_position_in_line);
+
+        let a = self.cursor_position;
+        let loggerr = format!("cursor_position_in_line:{cursor_position_in_line} | cursor_position:{a} ");
+        self.log(loggerr);
+
+        if self.cursor_position > middle_line_end
+            && self.cursor_position
+                != middle_line_end.saturating_add(1)
+        {
+            self.cursor_position = middle_line_end + 1;
+        }
 
         // if middle_line.saturating_sub(top_line) == 1
         //     && self.cursor_position >= middle_line
@@ -417,11 +455,13 @@ impl TextInputComponent {
             while !self.msg.is_char_boundary(self.cursor_position) {
                 self.cursor_position += 1;
             }
-        } else {
-            self.cursor_position = self.msg.len().saturating_sub(1);
         }
+        // else {
+        //     self.cursor_position = self.msg.len().saturating_sub(1);
+        // }
 
-        if self.cur_line < self.scroll_max.saturating_sub(2) {
+        //
+        if self.cur_line < self.scroll_max {
             self.cur_line += 1;
             if self.cur_line
                 > self.scroll_top
@@ -431,6 +471,17 @@ impl TextInputComponent {
                 self.scroll_top += 1;
             }
         }
+        //
+        // if self.cur_line < self.scroll_max.saturating_sub(2) {
+        //     self.cur_line += 1;
+        //     if self.cur_line
+        //         > self.scroll_top
+        //             + (self.current_area.get().height as usize)
+        //                 .saturating_sub(3_usize)
+        //     {
+        //         self.scroll_top += 1;
+        //     }
+        // }
 
         //if self.msg.chars().last() == Some('\n') {
         //panic!();
