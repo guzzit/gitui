@@ -221,6 +221,109 @@ impl TextInputComponent {
 
     /// Move the cursor up a line.
     /// Only for multi-line textinputs
+    // fn line_up_cursor(&mut self) {
+    //     // let mut nearest_newline: usize = 0;
+    //     // let mut prev_line_newline_loc = 0;
+    //     // for (i, c) in self.msg.chars().enumerate() {
+    //     //     if c == '\n' {
+    //     //         prev_line_newline_loc = nearest_newline;
+    //     //         nearest_newline = i;
+    //     //     }
+
+    //     //     if i >= self.cursor_position {
+    //     //         break;
+    //     //     }
+    //     // }
+    //     //start ex
+    //     let mut top_line = 0;
+    //     let mut middle_line = 0;
+    //     let mut bottom_line = 0;
+    //     for (i, c) in self.msg.chars().enumerate() {
+    //         if c == '\n'
+    //         // || (i > bottom_line
+    //         //     && i >= self.cursor_position.saturating_sub(1))
+    //         {
+    //             top_line = middle_line;
+    //             middle_line = bottom_line;
+    //             bottom_line = i;
+    //         }
+
+    //         if i >= self.cursor_position
+    //             || i == self.msg.len().saturating_sub(1)
+    //         {
+    //             //flatten to one big if statement
+    //             if c != '\n'
+    //                 && !self.msg.ends_with('\n')
+    //                 && i > bottom_line
+    //             {
+    //                 top_line = middle_line;
+    //                 middle_line = bottom_line;
+    //                 bottom_line = self.msg.len() - 1
+    //             } else if c == '\n' && i == self.msg.len() - 1 {
+    //                 top_line = middle_line;
+    //                 middle_line = bottom_line;
+    //             } else if self.msg.chars().nth(top_line) == Some('\n')
+    //                 && self.msg.chars().nth(middle_line) == Some('\n')
+    //                 && bottom_line != self.cursor_position
+    //             {
+    //                 top_line = middle_line;
+    //                 middle_line = bottom_line;
+    //             } else if top_line == 0 {
+    //                 top_line = middle_line;
+    //                 middle_line = bottom_line;
+    //             }
+
+    //             // if c == '\n' && i == self.cursor_position {
+    //             //     middle_line += middle_line;
+    //             // }
+    //             break;
+    //         }
+    //     }
+
+    //     // let m = self.msg.clone();
+    //     // let mess = format!("MESS:{m}");
+    //     // self.log(mess);
+
+    //     //if middle line = 0; don't do anything, or shift left?
+    //     let logger = format!("top_line:{top_line} | middle_line:{middle_line} | bottom_line:{bottom_line}");
+    //     self.log(logger);
+    //     if middle_line.saturating_sub(top_line) == 1
+    //         && self.cursor_position != middle_line
+    //     {
+    //         self.cursor_position = middle_line;
+    //     } else {
+    //         let cursor_position_in_line =
+    //             self.cursor_position.saturating_sub(middle_line);
+    //         self.cursor_position =
+    //             top_line.saturating_add(cursor_position_in_line);
+
+    //         if top_line == 0 {
+    //             self.cursor_position =
+    //                 self.cursor_position.saturating_sub(1);
+    //         }
+    //     }
+
+    //     //end ex
+
+    //     // self.cursor_position = (prev_line_newline_loc
+    //     //     + self.cursor_position)
+    //     //     .saturating_sub(nearest_newline);
+    //     // if prev_line_newline_loc == 0 {
+    //     //     self.cursor_position = 0;
+    //     //     //self.cursor_position.saturating_sub(1);
+    //     // }
+
+    //     while !self.msg.is_char_boundary(self.cursor_position) {
+    //         self.cursor_position += 1;
+    //     }
+    //     self.cur_line = self.cur_line.saturating_sub(1);
+    //     if self.cur_line < self.scroll_top {
+    //         self.scroll_top = self.scroll_top.saturating_sub(1);
+    //     }
+
+    //     let action = String::from("line_up_cursor");
+    //     self.log(action);
+    // }
     fn line_up_cursor(&mut self) {
         // let mut nearest_newline: usize = 0;
         // let mut prev_line_newline_loc = 0;
@@ -235,49 +338,65 @@ impl TextInputComponent {
         //     }
         // }
         //start ex
-        let mut top_line = 0;
-        let mut middle_line = 0;
-        let mut bottom_line = 0;
+        let mut top_line_start: usize = 0;
+        let mut top_line_end: usize = 0;
+        let mut middle_line_start: usize = 0;
+        let mut middle_line_end: usize = 0;
+        let mut bottom_line_start: usize = 0;
+        let mut bottom_line_end: usize = 0;
+
         for (i, c) in self.msg.chars().enumerate() {
             if c == '\n'
             // || (i > bottom_line
             //     && i >= self.cursor_position.saturating_sub(1))
             {
-                top_line = middle_line;
-                middle_line = bottom_line;
-                bottom_line = i;
+                top_line_start = middle_line_start;
+                top_line_end = middle_line_end;
+                middle_line_start = bottom_line_start;
+                middle_line_end = i.saturating_sub(1);
+                bottom_line_start = i;
             }
 
-            if i >= self.cursor_position
-                || i == self.msg.len().saturating_sub(1)
-            {
-                //flatten to one big if statement
-                if c != '\n'
-                    && !self.msg.ends_with('\n')
-                    && i > bottom_line
-                {
-                    top_line = middle_line;
-                    middle_line = bottom_line;
-                    bottom_line = self.msg.len() - 1
-                } else if c == '\n' && i == self.msg.len() - 1 {
-                    top_line = middle_line;
-                    middle_line = bottom_line;
-                } else if self.msg.chars().nth(top_line) == Some('\n')
-                    && self.msg.chars().nth(middle_line) == Some('\n')
-                    && bottom_line != self.cursor_position
-                {
-                    top_line = middle_line;
-                    middle_line = bottom_line;
-                } else if top_line == 0 {
-                    top_line = middle_line;
-                    middle_line = bottom_line;
+            if i == self.cursor_position {
+                //for when cursor pos is on new lines just before text
+                if c == '\n' {
+                    bottom_line_start = middle_line_start;
+                    middle_line_start = top_line_start;
+                    middle_line_end = top_line_end;
                 }
-
-                // if c == '\n' && i == self.cursor_position {
-                //     middle_line += middle_line;
-                // }
                 break;
             }
+
+            // if i >= self.cursor_position
+            //     || i == self.msg.len().saturating_sub(1)
+            // {
+            //     //flatten to one big if statement
+            //     if c != '\n'
+            //         && !self.msg.ends_with('\n')
+            //         && i > bottom_line
+            //     {
+            //         top_line = middle_line;
+            //         middle_line = bottom_line;
+            //         bottom_line = self.msg.len() - 1
+            //     } else if c == '\n' && i == self.msg.len() - 1 {
+            //         top_line = middle_line;
+            //         middle_line = bottom_line;
+            //     } else if self.msg.chars().nth(top_line) == Some('\n')
+            //         && self.msg.chars().nth(middle_line) == Some('\n')
+            //         && bottom_line != self.cursor_position
+            //     {
+            //         top_line = middle_line;
+            //         middle_line = bottom_line;
+            //     } else if top_line == 0 {
+            //         top_line = middle_line;
+            //         middle_line = bottom_line;
+            //     }
+
+            //     // if c == '\n' && i == self.cursor_position {
+            //     //     middle_line += middle_line;
+            //     // }
+            //     break;
+            // }
         }
 
         // let m = self.msg.clone();
@@ -285,24 +404,42 @@ impl TextInputComponent {
         // self.log(mess);
 
         //if middle line = 0; don't do anything, or shift left?
-        let logger = format!("top_line:{top_line} | middle_line:{middle_line} | bottom_line:{bottom_line}");
+        // let logger = format!("top_line:{top_line} | middle_line:{middle_line} | bottom_line:{bottom_line}");
+        // self.log(logger);
+        // if middle_line.saturating_sub(top_line) == 1
+        //     && self.cursor_position != middle_line
+        // {
+        //     self.cursor_position = middle_line;
+        // } else {
+        //     let cursor_position_in_line =
+        //         self.cursor_position.saturating_sub(middle_line);
+        //     self.cursor_position =
+        //         top_line.saturating_add(cursor_position_in_line);
+
+        //     if top_line == 0 {
+        //         self.cursor_position =
+        //             self.cursor_position.saturating_sub(1);
+        //     }
+        // }
+
+        let logger = format!("lineup:top_line_start:{top_line_start} | top_line_end:{top_line_end} | middle_line_start:{middle_line_start} | middle_line_end:{middle_line_end}  | bottom_line_start:{bottom_line_start} | bottom_line_end:{bottom_line_end}");
         self.log(logger);
-        if middle_line.saturating_sub(top_line) == 1
-            && self.cursor_position != middle_line
-        {
-            self.cursor_position = middle_line;
-        } else {
-            let cursor_position_in_line =
-                self.cursor_position.saturating_sub(middle_line);
-            self.cursor_position =
-                top_line.saturating_add(cursor_position_in_line);
+        //for line up
+        let mut cursor_position_in_line =
+            self.cursor_position.saturating_sub(bottom_line_start);
 
-            if top_line == 0 {
-                self.cursor_position =
-                    self.cursor_position.saturating_sub(1);
-            }
+        //for when moving up to first line
+        if middle_line_start == 0 {
+            cursor_position_in_line =
+                cursor_position_in_line.saturating_sub(1);
         }
+        self.cursor_position =
+            middle_line_start.saturating_add(cursor_position_in_line);
 
+        //for when moving uo to a new line from a line with characters
+        if self.cursor_position > middle_line_end {
+            self.cursor_position = middle_line_end.saturating_add(1);
+        }
         //end ex
 
         // self.cursor_position = (prev_line_newline_loc
